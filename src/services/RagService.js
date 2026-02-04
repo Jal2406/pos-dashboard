@@ -2,12 +2,12 @@ import { Client } from '@elastic/elasticsearch';
 import fs from 'fs/promises';
 import path from 'path';
 import crypto from 'crypto';
-import * as pdfjs from 'pdfjs-dist/legacy/build/pdf.mjs';
+import PDFParser from 'pdf-parse';
 import mammoth from 'mammoth';
 import { GoogleGenerativeAI } from '@google/generative-ai';
 import { RagConfig } from '../config/rag-config.fallback.js';
 
-// PDF parsing handled via pdfjs-dist
+// PDF parsing handled via pdf-parse
 
 class RagService {
   constructor() {
@@ -160,20 +160,17 @@ class RagService {
       // Handle PDF files
       if (mimeType === 'application/pdf' || path.extname(filePath) === '.pdf') {
         try {
-          // Use pdfjs directly for consistent server-side parsing
-          const loadingTask = pdfjs.getDocument({
-            data: new Uint8Array(fileBuffer),
-          });
-          const pdfDoc = await loadingTask.promise;
+          // Use pdf-parse for server-side PDF parsing
+          const pdfData = await PDFParser(fileBuffer);
+          
           let fullText = '';
-          const numPages = pdfDoc.numPages || 0;
-          for (let pageNum = 1; pageNum <= numPages; pageNum++) {
-            const page = await pdfDoc.getPage(pageNum);
-            const textContent = await page.getTextContent();
-            const pageText = (textContent.items || [])
-              .map((item) => (item && item.str ? String(item.str) : ''))
-              .join(' ');
-            if (pageText) fullText += (fullText ? '\n' : '') + pageText;
+          
+          // Extract text from each page
+          if (pdfData.text) {
+            fullText = pdfData.text;
+          } else if (pdfData.version) {
+            // Fallback: iterate through pages if available
+            fullText = pdfData.text || '';
           }
 
           const text = fullText.trim();
