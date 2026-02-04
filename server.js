@@ -52,7 +52,6 @@ const notificationScheduler = schedulerEnabled
 const startServer = async () => {
   try {
     // Test DNS resolution
-    await testDNS();
     const sessionMaxAgeMs =
       Number(process.env.SESSION_MAX_AGE) || 24 * 60 * 60 * 1000;
 
@@ -78,23 +77,11 @@ const startServer = async () => {
       await import('./src/middleware/maintenanceMode.middleware.js');
     app.use(MaintenanceModeMiddleware.checkMaintenanceMode());
 
-    // Seed database with initial data
-    await Promise.all([
-      seedRoles(),
-      seedDemoUsers(),
-      seedDefaultCurrencies(),
-      seedHeroSection(),
-      seedMiscSettings(),
-      seedTaxes(),
-      seedProductOverview(),
-      seedSocialMediaLinks(),
-      seedFooterSection(),
-      seedFaqCategories(),
-      seedFaqs(),
-      // seedNotificationTemplates(),
-    ]);
-
     app.use(resolveTenantFromSubdomain)
+
+    app.get('/', (_, res) => {
+      res.status(200).send('OK');
+    });
 
     // Load and register API routes
     const { default: API } = await import('./src/routes/index.js');
@@ -111,18 +98,10 @@ const startServer = async () => {
         );
       }
     }
-
-    // Start HTTP server
-    const port = process.env.PORT;
-
-    app.listen(port, () => {
-      console.log(`Server is running on port ${port}`);
-    });
   } catch (error) {
     console.error('Failed to start server:', error);
     process.exit(1);
   }
 };
 
-// Start the server
-startServer();
+

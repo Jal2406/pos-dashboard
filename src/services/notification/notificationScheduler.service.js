@@ -9,6 +9,13 @@ import NotificationSweepJob from './jobs/notificationSweep.job.js';
 
 class NotificationSchedulerService {
   constructor({ logger = console, config = cronConfig, lockService } = {}) {
+    // Check if scheduler is disabled via environment variable
+    if (process.env.NOTIFICATION_SCHEDULER_DISABLED === 'true') {
+      logger.info('[NotificationScheduler] Scheduler is disabled via NOTIFICATION_SCHEDULER_DISABLED flag');
+      this.disabled = true;
+      return;
+    }
+
     this.logger = logger;
     this.config = config;
     this.subscriptionService = new SubscriptionService();
@@ -34,6 +41,10 @@ class NotificationSchedulerService {
   }
 
   async init() {
+    if (this.disabled) {
+      return;
+    }
+
     for (const [jobName, jobConfig] of Object.entries(this.config.jobs)) {
       const job = this.jobs[jobName];
       if (!job) {
@@ -101,6 +112,9 @@ class NotificationSchedulerService {
   }
 
   stop() {
+    if (this.disabled) {
+      return;
+    }
     this.tasks.forEach(({ task }) => task.stop());
   }
 }
