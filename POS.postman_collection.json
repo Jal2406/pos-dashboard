@@ -1,0 +1,2602 @@
+{
+  "info": {
+    "_postman_id": "134e167d-37ea-482b-8e32-140f8ac287e6",
+    "name": "POS Copy",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "47334350",
+    "_collection_link": "https://planetary-crater-949165.postman.co/workspace/My-Workspace~2f76ea3a-4fed-40a6-87ef-5a0287dbc367/collection/47334350-134e167d-37ea-482b-8e32-140f8ac287e6?action=share&source=collection_link&creator=47334350"
+  },
+  "item": [
+    {
+      "name": "Auth",
+      "item": [
+        {
+          "name": "Registration",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"name\": \"John Doe\",\r\n  \"email\": \"john.doe@yopmaiil.com\",\r\n  \"password\": \"Test@123\",\r\n  \"phone\": \"+919876543210\",\r\n  \"roleName\": \"admin\",\r\n  \"profilePicture\": \"https://dummyimage.com/200x200/000/fff.png&text=JD\",\r\n  \"businessName\": \"Doe Electronics Pvt Ltd\",\r\n  \"businessCategory\": \"689c549f69a05b8e32031dd0\"\r\n}\r\n",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{Base_Url}}auth/register",
+              "host": ["{{Base_Url}}auth"],
+              "path": ["register"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Login",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{ACCESS_TOKEN}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"email\" : \"dishantm@yopmail.com\",\r\n    \"password\" : \"123456\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{Base_Url}}auth/login",
+              "host": ["{{Base_Url}}auth"],
+              "path": ["login"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Edit Profile",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{ACCESS_TOKEN}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"name\": \"Dishant\",\r\n    \"email\": \"dishantm13@yopmail.com\",\r\n    \"phone\" : \"8200513777\",\r\n    \"roleId\" : \"2\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{Base_Url}}auth/editProfile689b3f64a3f933f656c6c1e1",
+              "host": ["{{Base_Url}}auth"],
+              "path": ["editProfile689b3f64a3f933f656c6c1e1"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "forgotpassword",
+          "request": {
+            "method": "GET",
+            "header": []
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Super Admin",
+      "item": [
+        {
+          "name": "User",
+          "item": [
+            {
+              "name": "Get Users",
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{ACCESS_TOKEN}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{Base_Url}}super-admin/users",
+                  "host": ["{{Base_Url}}super-admin"],
+                  "path": ["users"],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "1",
+                      "disabled": true
+                    },
+                    {
+                      "key": "limit",
+                      "value": "25",
+                      "disabled": true
+                    },
+                    {
+                      "key": "search",
+                      "value": "admin",
+                      "disabled": true
+                    },
+                    {
+                      "key": "sortBy",
+                      "value": "createdAt",
+                      "disabled": true
+                    },
+                    {
+                      "key": "sortOrder",
+                      "value": "desc",
+                      "disabled": true
+                    },
+                    {
+                      "key": "roleId",
+                      "value": "2",
+                      "disabled": true
+                    }
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Get Admin by id",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{ACCESS_TOKEN}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n    \"email\" : \"dishantm@yopmail.com\",\r\n    \"password\" : \"123456\"\r\n}"
+                },
+                "url": {
+                  "raw": "{{Base_Url}}super-admin/user/689b3f64a3f933f656c6c1e1",
+                  "host": ["{{Base_Url}}super-admin"],
+                  "path": ["user", "689b3f64a3f933f656c6c1e1"]
+                }
+              },
+              "response": []
+            }
+          ]
+        },
+        {
+          "name": "Coupons",
+          "item": [
+            {
+              "name": "coupons",
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{ACCESS_TOKEN}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "\r\n{\r\n  \"code\": \"WELCOME50\",\r\n  \"description\": \"Get 50% off on your first subscription plan purchase.\",\r\n  \"start_date\": \"2025-08-01T00:00:00.000Z\",\r\n  \"end_date\": \"2025-08-31T23:59:59.000Z\",\r\n  \"type\": \"Percentage\",\r\n  \"discount_amount\": 50,\r\n  \"limit\": 100,\r\n  \"plans\": [\"66bb9cbd5d274e038813730c\", \"66bb9cbd5d274e038813730d\"],\r\n  \"status\": \"Active\"\r\n}\r\n",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "http://localhost:8080/api/v2/super-admin/coupons",
+                  "protocol": "http",
+                  "host": ["localhost"],
+                  "port": "8080",
+                  "path": ["api", "v2", "super-admin", "coupons"]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "coupons",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{ACCESS_TOKEN}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "\r\n{\r\n  \"code\": \"WELCOME50\",\r\n  \"description\": \"Get 50% off on your first subscription plan purchase.\",\r\n  \"start_date\": \"2025-08-01T00:00:00.000Z\",\r\n  \"end_date\": \"2025-08-31T23:59:59.000Z\",\r\n  \"type\": \"Percentage\",\r\n  \"discount_amount\": 50,\r\n  \"limit\": 100,\r\n  \"plans\": [\"66bb9cbd5d274e038813730c\", \"66bb9cbd5d274e038813730d\"],\r\n  \"status\": \"Active\"\r\n}\r\n"
+                },
+                "url": {
+                  "raw": "http://localhost:8080/api/v2/super-admin/coupons",
+                  "protocol": "http",
+                  "host": ["localhost"],
+                  "port": "8080",
+                  "path": ["api", "v2", "super-admin", "coupons"]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "coupons",
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{ACCESS_TOKEN}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "PUT",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "\r\n{\r\n  \"code\": \"WELCOME70\",\r\n  \"description\": \"Get 60% off on your first subscription plan purchase.\",\r\n  \"start_date\": \"2025-08-01T00:00:00.000Z\",\r\n  \"end_date\": \"2025-08-31T23:59:59.000Z\",\r\n  \"type\": \"Percentage\",\r\n  \"discount_amount\": 50,\r\n  \"limit\": 100,\r\n  \"plans\": [\"66bb9cbd5d274e038813730c\", \"66bb9cbd5d274e038813730d\"],\r\n  \"status\": \"Active\"\r\n}\r\n",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "http://localhost:8080/api/v2/super-admin/coupons/689c5b896197295248d41132",
+                  "protocol": "http",
+                  "host": ["localhost"],
+                  "port": "8080",
+                  "path": [
+                    "api",
+                    "v2",
+                    "super-admin",
+                    "coupons",
+                    "689c5b896197295248d41132"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "coupons",
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{ACCESS_TOKEN}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "DELETE",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "\r\n{\r\n  \"code\": \"WELCOME70\",\r\n  \"description\": \"Get 60% off on your first subscription plan purchase.\",\r\n  \"start_date\": \"2025-08-01T00:00:00.000Z\",\r\n  \"end_date\": \"2025-08-31T23:59:59.000Z\",\r\n  \"type\": \"Percentage\",\r\n  \"discount_amount\": 50,\r\n  \"limit\": 100,\r\n  \"plans\": [\"66bb9cbd5d274e038813730c\", \"66bb9cbd5d274e038813730d\"],\r\n  \"status\": \"Active\"\r\n}\r\n"
+                },
+                "url": {
+                  "raw": "http://localhost:8080/api/v2/super-admin/coupons/689c5b896197295248d41132",
+                  "protocol": "http",
+                  "host": ["localhost"],
+                  "port": "8080",
+                  "path": [
+                    "api",
+                    "v2",
+                    "super-admin",
+                    "coupons",
+                    "689c5b896197295248d41132"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "coupons :id",
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{ACCESS_TOKEN}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "http://localhost:8080/api/v2/super-admin/coupons/689c6e7ea99ced8e5195c4d7",
+                  "protocol": "http",
+                  "host": ["localhost"],
+                  "port": "8080",
+                  "path": [
+                    "api",
+                    "v2",
+                    "super-admin",
+                    "coupons",
+                    "689c6e7ea99ced8e5195c4d7"
+                  ]
+                }
+              },
+              "response": []
+            }
+          ]
+        },
+        {
+          "name": "FAQS",
+          "item": [
+            {
+              "name": "FAQ",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{ACCESS_TOKEN}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"question\": \"How do I reset my passwords?\",\r\n  \"answer\": \"Click on the forgot password link...\",\r\n  \"isPublished\": true\r\n}"
+                },
+                "url": {
+                  "raw": "http://localhost:8080/api/v2/super-admin/faqs",
+                  "protocol": "http",
+                  "host": ["localhost"],
+                  "port": "8080",
+                  "path": ["api", "v2", "super-admin", "faqs"]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "FAQ",
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{ACCESS_TOKEN}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"question\": \"How do I reset my passwords?\",\r\n  \"answer\": \"Click on the forgot password link...\",\r\n  \"isPublished\": true\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "http://localhost:8080/api/v2/super-admin/faqs",
+                  "protocol": "http",
+                  "host": ["localhost"],
+                  "port": "8080",
+                  "path": ["api", "v2", "super-admin", "faqs"]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "FAQ",
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{ACCESS_TOKEN}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "PUT",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"question\": \"How do I reset my password?\",\r\n  \"answer\": \"Click on the forgot password link...\",\r\n  \"isPublished\": false\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "http://localhost:8080/api/v2/super-admin/faqs/689d6f71e16b5e67a67d49f4",
+                  "protocol": "http",
+                  "host": ["localhost"],
+                  "port": "8080",
+                  "path": [
+                    "api",
+                    "v2",
+                    "super-admin",
+                    "faqs",
+                    "689d6f71e16b5e67a67d49f4"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "FAQ",
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{ACCESS_TOKEN}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "DELETE",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"question\": \"How do I reset my password?\",\r\n  \"answer\": \"Click on the forgot password link...\",\r\n  \"isPublished\": false\r\n}"
+                },
+                "url": {
+                  "raw": "http://localhost:8080/api/v2/super-admin/faqs/689d6f71e16b5e67a67d49f4",
+                  "protocol": "http",
+                  "host": ["localhost"],
+                  "port": "8080",
+                  "path": [
+                    "api",
+                    "v2",
+                    "super-admin",
+                    "faqs",
+                    "689d6f71e16b5e67a67d49f4"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "FAQ:id",
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{ACCESS_TOKEN}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "http://localhost:8080/api/v2/super-admin/faqs/689d6f1be16b5e67a67d49e8",
+                  "protocol": "http",
+                  "host": ["localhost"],
+                  "port": "8080",
+                  "path": [
+                    "api",
+                    "v2",
+                    "super-admin",
+                    "faqs",
+                    "689d6f1be16b5e67a67d49e8"
+                  ]
+                }
+              },
+              "response": []
+            }
+          ]
+        },
+        {
+          "name": "Invoice-Setting",
+          "item": [
+            {
+              "name": "Invoice-setting",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{ACCESS_TOKEN}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"orderPrefix\": \"INV\",\r\n  \"orderStart\": 1001,\r\n  \"specialNote\": \"Thank you for shopping with us!\",\r\n  \"template\": \"template2\"\r\n}\r\n"
+                },
+                "url": {
+                  "raw": "http://localhost:8080/api/v2/super-admin/invoice-settings",
+                  "protocol": "http",
+                  "host": ["localhost"],
+                  "port": "8080",
+                  "path": ["api", "v2", "super-admin", "invoice-settings"]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Invoice-setting",
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{ACCESS_TOKEN}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"orderPrefix\": \"INV\",\r\n  \"orderStart\": 1001,\r\n  \"specialNote\": \"Thank you for shopping with us!\",\r\n  \"template\": \"template2\"\r\n}\r\n",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "http://localhost:8080/api/v2/super-admin/invoice-settings",
+                  "protocol": "http",
+                  "host": ["localhost"],
+                  "port": "8080",
+                  "path": ["api", "v2", "super-admin", "invoice-settings"]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Invoice-setting",
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{ACCESS_TOKEN}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "PUT",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"orderPrefix\": \"INV\",\r\n  \"orderStart\": 1001,\r\n  \"specialNote\": \"Thank you for shopping with uss!\",\r\n  \"template\": \"template3\"\r\n}\r\n",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "http://localhost:8080/api/v2/super-admin/invoice-settings/689d8aeb72385049bcda2853",
+                  "protocol": "http",
+                  "host": ["localhost"],
+                  "port": "8080",
+                  "path": [
+                    "api",
+                    "v2",
+                    "super-admin",
+                    "invoice-settings",
+                    "689d8aeb72385049bcda2853"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Invoice-setting",
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{ACCESS_TOKEN}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "DELETE",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"orderPrefix\": \"INV\",\r\n  \"orderStart\": 1001,\r\n  \"specialNote\": \"Thank you for shopping with uss!\",\r\n  \"template\": \"template3\"\r\n}\r\n"
+                },
+                "url": {
+                  "raw": "http://localhost:8080/api/v2/super-admin/invoice-settings/689d8aeb72385049bcda2853",
+                  "protocol": "http",
+                  "host": ["localhost"],
+                  "port": "8080",
+                  "path": [
+                    "api",
+                    "v2",
+                    "super-admin",
+                    "invoice-settings",
+                    "689d8aeb72385049bcda2853"
+                  ]
+                }
+              },
+              "response": []
+            }
+          ]
+        },
+        {
+          "name": "plan",
+          "item": [
+            {
+              "name": "plans",
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{ACCESS_TOKEN}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "DELETE",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"name\": \"Standard POS Plans\",\r\n  \"price\": 2000,\r\n  \"storeLimit\": 5,\r\n  \"staffLimit\": 10,\r\n  \"status\": true,\r\n  \"tax\": \"66c2a8f73d6a0f48c8b12345\",\r\n  \"themes\": [\r\n    \"66c2a9013d6a0f48c8b54321\",\r\n    \"66c2a9053d6a0f48c8b67890\"\r\n  ],\r\n  \"description\": \"This plan is ideal for small to medium businesses with up to 5 stores and 10 users.\",\r\n  \"duration\": \"1 year\",\r\n  \"modules\": [\r\n    \"sales\",\r\n    \"inventory\",\r\n    \"pos\",\r\n    \"dashboard\",\r\n    \"reports\"\r\n  ]\r\n}\r\n"
+                },
+                "url": {
+                  "raw": "http://localhost:8080/api/v2/super-admin/plans/68a40eb7992fba89860c7089",
+                  "protocol": "http",
+                  "host": ["localhost"],
+                  "port": "8080",
+                  "path": [
+                    "api",
+                    "v2",
+                    "super-admin",
+                    "plans",
+                    "68a40eb7992fba89860c7089"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "plans",
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{ACCESS_TOKEN}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "PUT",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"name\": \"Standard POS Plans\",\r\n  \"price\": 3099,\r\n  \"storeLimit\": 5,\r\n  \"staffLimit\": 10,\r\n  \"status\": true,\r\n  \"tax\": \"66c2a8f73d6a0f48c8b12345\",\r\n  \"themes\": [\r\n    \"66c2a9013d6a0f48c8b54321\",\r\n    \"66c2a9053d6a0f48c8b67890\"\r\n  ],\r\n  \"description\": \"This plan is ideal for small to medium businesses with up to 5 stores and 10 users.\",\r\n  \"duration\": \"1 year\",\r\n  \"modules\": [\r\n    \"sales\",\r\n    \"inventory\",\r\n    \"pos\",\r\n    \"dashboard\",\r\n    \"reports\"\r\n  ]\r\n}\r\n",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "http://localhost:8080/api/v2/super-admin/plans/68a411a8fe7979941e6bbe9c",
+                  "protocol": "http",
+                  "host": ["localhost"],
+                  "port": "8080",
+                  "path": [
+                    "api",
+                    "v2",
+                    "super-admin",
+                    "plans",
+                    "68a411a8fe7979941e6bbe9c"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "plans",
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{ACCESS_TOKEN}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"name\": \"Standard POS Plan\",\r\n  \"price\": 1999,\r\n  \"storeLimit\": 5,\r\n  \"staffLimit\": 10,\r\n  \"status\": true,\r\n  \"tax\": \"66c2a8f73d6a0f48c8b12345\",\r\n  \"themes\": [\r\n    \"66c2a9013d6a0f48c8b54321\",\r\n    \"66c2a9053d6a0f48c8b67890\"\r\n  ],\r\n  \"description\": \"This plan is ideal for small to medium businesses with up to 5 stores and 10 users.\",\r\n  \"duration\": \"1 year\",\r\n  \"modules\": [\r\n    \"sales\",\r\n    \"inventory\",\r\n    \"pos\",\r\n    \"dashboard\",\r\n    \"reports\"\r\n  ]\r\n}\r\n",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "http://localhost:8080/api/v2/super-admin/plans",
+                  "protocol": "http",
+                  "host": ["localhost"],
+                  "port": "8080",
+                  "path": ["api", "v2", "super-admin", "plans"]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "plans",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{ACCESS_TOKEN}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"name\": \"Standard POS Plan\",\r\n  \"price\": 1999,\r\n  \"storeLimit\": 5,\r\n  \"staffLimit\": 10,\r\n  \"status\": true,\r\n  \"tax\": \"66c2a8f73d6a0f48c8b12345\",\r\n  \"themes\": [\r\n    \"66c2a9013d6a0f48c8b54321\",\r\n    \"66c2a9053d6a0f48c8b67890\"\r\n  ],\r\n  \"description\": \"This plan is ideal for small to medium businesses with up to 5 stores and 10 users.\",\r\n  \"duration\": \"1 year\",\r\n  \"modules\": [\r\n    \"sales\",\r\n    \"inventory\",\r\n    \"pos\",\r\n    \"dashboard\",\r\n    \"reports\"\r\n  ]\r\n}\r\n"
+                },
+                "url": {
+                  "raw": "http://localhost:8080/api/v2/super-admin/plans",
+                  "protocol": "http",
+                  "host": ["localhost"],
+                  "port": "8080",
+                  "path": ["api", "v2", "super-admin", "plans"]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "plans:id",
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{ACCESS_TOKEN}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "http://localhost:8080/api/v2/super-admin/plans/68a2eb522c78e9ae28fc9627",
+                  "protocol": "http",
+                  "host": ["localhost"],
+                  "port": "8080",
+                  "path": [
+                    "api",
+                    "v2",
+                    "super-admin",
+                    "plans",
+                    "68a2eb522c78e9ae28fc9627"
+                  ]
+                }
+              },
+              "response": []
+            }
+          ]
+        },
+        {
+          "name": "Tax",
+          "item": [
+            {
+              "name": "Tax",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{ACCESS_TOKEN}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"name\": \"Standard POS Plan\",\r\n  \"price\": 1999,\r\n  \"storeLimit\": 5,\r\n  \"staffLimit\": 10,\r\n  \"status\": true,\r\n  \"tax\": \"66c2a8f73d6a0f48c8b12345\",\r\n  \"themes\": [\r\n    \"66c2a9013d6a0f48c8b54321\",\r\n    \"66c2a9053d6a0f48c8b67890\"\r\n  ],\r\n  \"description\": \"This plan is ideal for small to medium businesses with up to 5 stores and 10 users.\",\r\n  \"duration\": \"1 year\",\r\n  \"modules\": [\r\n    \"sales\",\r\n    \"inventory\",\r\n    \"pos\",\r\n    \"dashboard\",\r\n    \"reports\"\r\n  ]\r\n}\r\n"
+                },
+                "url": {
+                  "raw": "http://localhost:8080/api/v2/super-admin/tax",
+                  "protocol": "http",
+                  "host": ["localhost"],
+                  "port": "8080",
+                  "path": ["api", "v2", "super-admin", "tax"]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Tax",
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{ACCESS_TOKEN}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"name\": \"GST\",\r\n  \"type\": \"Percentage\",\r\n  \"value\": 18,\r\n  \"status\": true\r\n}\r\n",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "http://localhost:8080/api/v2/super-admin/tax",
+                  "protocol": "http",
+                  "host": ["localhost"],
+                  "port": "8080",
+                  "path": ["api", "v2", "super-admin", "tax"]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Tax",
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{ACCESS_TOKEN}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "PUT",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"name\": \"GST\",\r\n  \"type\": \"Percentage\",\r\n  \"value\": 18,\r\n  \"status\": false\r\n}\r\n",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "http://localhost:8080/api/v2/super-admin/tax/68a41325fe7979941e6bbeb1",
+                  "protocol": "http",
+                  "host": ["localhost"],
+                  "port": "8080",
+                  "path": [
+                    "api",
+                    "v2",
+                    "super-admin",
+                    "tax",
+                    "68a41325fe7979941e6bbeb1"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Tax",
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{ACCESS_TOKEN}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "DELETE",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"name\": \"GST\",\r\n  \"type\": \"Percentage\",\r\n  \"value\": 18,\r\n  \"status\": false\r\n}\r\n"
+                },
+                "url": {
+                  "raw": "http://localhost:8080/api/v2/super-admin/tax/68a41325fe7979941e6bbeb1",
+                  "protocol": "http",
+                  "host": ["localhost"],
+                  "port": "8080",
+                  "path": [
+                    "api",
+                    "v2",
+                    "super-admin",
+                    "tax",
+                    "68a41325fe7979941e6bbeb1"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Tax:id",
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{ACCESS_TOKEN}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "http://localhost:8080/api/v2/super-admin/tax/68a55d6ed2496a69b443c14c",
+                  "protocol": "http",
+                  "host": ["localhost"],
+                  "port": "8080",
+                  "path": [
+                    "api",
+                    "v2",
+                    "super-admin",
+                    "tax",
+                    "68a55d6ed2496a69b443c14c"
+                  ]
+                }
+              },
+              "response": []
+            }
+          ]
+        },
+        {
+          "name": "Business-category",
+          "item": [
+            {
+              "name": "business-categories",
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{ACCESS_TOKEN}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n    \"categoryName\": \"Restaurant\",\r\n    \"description\": \"Food and beverage services including dine-in, takeaway, and delivery.\",\r\n    \"isActive\": true\r\n  }",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "http://localhost:8080/api/v2/super-admin/business-categories",
+                  "protocol": "http",
+                  "host": ["localhost"],
+                  "port": "8080",
+                  "path": ["api", "v2", "super-admin", "business-categories"]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "business-categories",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{ACCESS_TOKEN}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n    \"categoryName\": \"Restaurant\",\r\n    \"description\": \"Food and beverage services including dine-in, takeaway, and delivery.\",\r\n    \"isActive\": true\r\n  }"
+                },
+                "url": {
+                  "raw": "http://localhost:8080/api/v2/super-admin/business-categories",
+                  "protocol": "http",
+                  "host": ["localhost"],
+                  "port": "8080",
+                  "path": ["api", "v2", "super-admin", "business-categories"]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "business-categories:id",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{ACCESS_TOKEN}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n    \"categoryName\": \"Restaurant\",\r\n    \"description\": \"Food and beverage services including dine-in, takeaway, and delivery.\",\r\n    \"isActive\": true\r\n  }"
+                },
+                "url": {
+                  "raw": "http://localhost:8080/api/v2/super-admin/business-categories/68a55f03d2496a69b443c153",
+                  "protocol": "http",
+                  "host": ["localhost"],
+                  "port": "8080",
+                  "path": [
+                    "api",
+                    "v2",
+                    "super-admin",
+                    "business-categories",
+                    "68a55f03d2496a69b443c153"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "business-categories",
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{ACCESS_TOKEN}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "PUT",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n    \"categoryName\": \"Restaurant\",\r\n    \"description\": \"Foods and beverage services including dine-in, takeaway, and delivery.\",\r\n    \"isActive\": true\r\n  }",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "http://localhost:8080/api/v2/super-admin/business-categories/68a55f03d2496a69b443c153",
+                  "protocol": "http",
+                  "host": ["localhost"],
+                  "port": "8080",
+                  "path": [
+                    "api",
+                    "v2",
+                    "super-admin",
+                    "business-categories",
+                    "68a55f03d2496a69b443c153"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "business-categories",
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{ACCESS_TOKEN}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "DELETE",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n    \"categoryName\": \"Restaurant\",\r\n    \"description\": \"Foods and beverage services including dine-in, takeaway, and delivery.\",\r\n    \"isActive\": true\r\n  }"
+                },
+                "url": {
+                  "raw": "http://localhost:8080/api/v2/super-admin/business-categories/68a55f03d2496a69b443c153",
+                  "protocol": "http",
+                  "host": ["localhost"],
+                  "port": "8080",
+                  "path": [
+                    "api",
+                    "v2",
+                    "super-admin",
+                    "business-categories",
+                    "68a55f03d2496a69b443c153"
+                  ]
+                }
+              },
+              "response": []
+            }
+          ]
+        },
+        {
+          "name": "Dashboard",
+          "item": [
+            {
+              "name": "Dashboard",
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{ACCESS_TOKEN}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "http://localhost:8080/api/v2/super-admin/dashboard",
+                  "protocol": "http",
+                  "host": ["localhost"],
+                  "port": "8080",
+                  "path": ["api", "v2", "super-admin", "dashboard"]
+                }
+              },
+              "response": []
+            }
+          ]
+        },
+        {
+          "name": "Subscription",
+          "item": [
+            {
+              "name": "subsccription",
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{ACCESS_TOKEN}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"planName\": \"68a2eb522c78e9ae28fc9627\",\r\n  \"duration\": \"1 Month\",\r\n  \"amount\": 500,\r\n  \"discount\": 50,\r\n  \"totalAmount\": 450,\r\n  \"purchaseDate\": \"2025-08-20T10:30:00.000Z\"\r\n}\r\n",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "http://localhost:8080/api/v2/super-admin/subscription",
+                  "protocol": "http",
+                  "host": ["localhost"],
+                  "port": "8080",
+                  "path": ["api", "v2", "super-admin", "subscription"]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "active subbscription",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{ACCESS_TOKEN}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "x-correlation-id",
+                    "value": "6575b469-05e1-414f-b6ec-4c048e381f6e",
+                    "type": "text"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"planId\": \"68a56a05f2c5de2c3c994c11\"\r\n}\r\n"
+                },
+                "url": {
+                  "raw": "http://localhost:8080/api/v2/super-admin/subscription",
+                  "protocol": "http",
+                  "host": ["localhost"],
+                  "port": "8080",
+                  "path": ["api", "v2", "super-admin", "subscription"]
+                }
+              },
+              "response": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Admin",
+      "item": [
+        {
+          "name": "Store",
+          "item": [
+            {
+              "name": "store",
+              "request": {
+                "method": "GET",
+                "header": []
+              },
+              "response": []
+            }
+          ]
+        },
+        {
+          "name": "Subscription",
+          "item": [
+            {
+              "name": "panding subscription",
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{ACCESS_TOKEN}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "x-correlation-id",
+                    "value": "6575b469-05e1-414f-b6ec-4c048e381f6e",
+                    "type": "text"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"planId\": \"68a56a05f2c5de2c3c994c11\"\r\n}\r\n",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "http://localhost:8080/api/v2/admin/subscription",
+                  "protocol": "http",
+                  "host": ["localhost"],
+                  "port": "8080",
+                  "path": ["api", "v2", "admin", "subscription"]
+                }
+              },
+              "response": []
+            }
+          ]
+        },
+        {
+          "name": "warranty",
+          "item": [
+            {
+              "name": "warranty",
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{ACCESS_TOKEN}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "http://localhost:8080/api/v2/admin/warranty",
+                  "protocol": "http",
+                  "host": ["localhost"],
+                  "port": "8080",
+                  "path": ["api", "v2", "admin", "warranty"]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "warranty :id",
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{ACCESS_TOKEN}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "http://localhost:8080/api/v2/admin/warranty/68a6fe268f507fc9dab72efb",
+                  "protocol": "http",
+                  "host": ["localhost"],
+                  "port": "8080",
+                  "path": [
+                    "api",
+                    "v2",
+                    "admin",
+                    "warranty",
+                    "68a6fe268f507fc9dab72efb"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "warranty",
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{ACCESS_TOKEN}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"warranty\": \"Extended Warranty\",\r\n  \"duration\": 12,\r\n  \"period\": \"Month\",\r\n  \"description\": \"This warranty covers repair and replacement for 12 months from the purchase date.\",\r\n  \"status\": true\r\n}\r\n",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "http://localhost:8080/api/v2/admin/warranty",
+                  "protocol": "http",
+                  "host": ["localhost"],
+                  "port": "8080",
+                  "path": ["api", "v2", "admin", "warranty"]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "warranty",
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{ACCESS_TOKEN}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "PUT",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"warranty\": \"Extended Warranty\",\r\n  \"duration\": 12,\r\n  \"period\": \"Month\",\r\n  \"description\": \"This warranty covers repair and replacement for 12 months from the purchase date.\",\r\n  \"status\": false\r\n}\r\n",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "http://localhost:8080/api/v2/admin/warranty/68a6fe268f507fc9dab72efb",
+                  "protocol": "http",
+                  "host": ["localhost"],
+                  "port": "8080",
+                  "path": [
+                    "api",
+                    "v2",
+                    "admin",
+                    "warranty",
+                    "68a6fe268f507fc9dab72efb"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "warranty",
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{ACCESS_TOKEN}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "DELETE",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"warranty\": \"Extended Warranty\",\r\n  \"duration\": 12,\r\n  \"period\": \"Month\",\r\n  \"description\": \"This warranty covers repair and replacement for 12 months from the purchase date.\",\r\n  \"status\": false\r\n}\r\n"
+                },
+                "url": {
+                  "raw": "http://localhost:8080/api/v2/admin/warranty/68a6fe268f507fc9dab72efb",
+                  "protocol": "http",
+                  "host": ["localhost"],
+                  "port": "8080",
+                  "path": [
+                    "api",
+                    "v2",
+                    "admin",
+                    "warranty",
+                    "68a6fe268f507fc9dab72efb"
+                  ]
+                }
+              },
+              "response": []
+            }
+          ]
+        },
+        {
+          "name": "Unit",
+          "item": [
+            {
+              "name": "Units",
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{ACCESS_TOKEN}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"unit\": \"Kilogram\",\r\n  \"shortName\": \"KG\",\r\n  \"status\": true\r\n}\r\n",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "http://localhost:8080/api/v2/admin/unit",
+                  "protocol": "http",
+                  "host": ["localhost"],
+                  "port": "8080",
+                  "path": ["api", "v2", "admin", "unit"]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Units",
+              "request": {
+                "method": "GET",
+                "header": []
+              },
+              "response": []
+            },
+            {
+              "name": "Units:id",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{ACCESS_TOKEN}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"unit\": \"Kilogram\",\r\n  \"shortName\": \"KG\",\r\n  \"status\": true\r\n}\r\n"
+                },
+                "url": {
+                  "raw": "http://localhost:8080/api/v2/admin/unit/68a7092233da841bd3d9a2d0",
+                  "protocol": "http",
+                  "host": ["localhost"],
+                  "port": "8080",
+                  "path": [
+                    "api",
+                    "v2",
+                    "admin",
+                    "unit",
+                    "68a7092233da841bd3d9a2d0"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "units",
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{ACCESS_TOKEN}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "PUT",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"unit\": \"Kilogram\",\r\n  \"shortName\": \"KG\",\r\n  \"status\": false\r\n}\r\n",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "http://localhost:8080/api/v2/admin/unit/68a7092233da841bd3d9a2d0",
+                  "protocol": "http",
+                  "host": ["localhost"],
+                  "port": "8080",
+                  "path": [
+                    "api",
+                    "v2",
+                    "admin",
+                    "unit",
+                    "68a7092233da841bd3d9a2d0"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "units",
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{ACCESS_TOKEN}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "DELETE",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"unit\": \"Kilogram\",\r\n  \"shortName\": \"KG\",\r\n  \"status\": false\r\n}\r\n"
+                },
+                "url": {
+                  "raw": "http://localhost:8080/api/v2/admin/unit/68a7092233da841bd3d9a2d0",
+                  "protocol": "http",
+                  "host": ["localhost"],
+                  "port": "8080",
+                  "path": [
+                    "api",
+                    "v2",
+                    "admin",
+                    "unit",
+                    "68a7092233da841bd3d9a2d0"
+                  ]
+                }
+              },
+              "response": []
+            }
+          ]
+        },
+        {
+          "name": "product",
+          "item": [
+            {
+              "name": "product",
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{ACCESS_TOKEN}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"productName\": \"iPhone 15 Pro\",\r\n  \"store\": \"66d13bf25a6d6e1234567890\",\r\n  \"category\": \"66d13d285a6d6e1234567891\",\r\n  \"subCategory\": \"66d13d445a6d6e1234567892\",\r\n  \"unit\": \"66d13d725a6d6e1234567893\",\r\n  \"brand\": \"66d13d8e5a6d6e1234567894\",\r\n  \"description\": \"Latest Apple iPhone 15 Pro with A17 Bionic chip.\",\r\n  \"quantity\": 50,\r\n  \"price\": 1200,\r\n  \"tax\": \"66d13db85a6d6e1234567895\",\r\n  \"warrantyType\": \"66d13dd25a6d6e1234567896\",\r\n  \"warrantyDate\": \"2025-09-01\",\r\n  \"expiryDate\": \"2026-09-01\"\r\n}\r\n",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "http://localhost:8080/api/v2/admin/product",
+                  "protocol": "http",
+                  "host": ["localhost"],
+                  "port": "8080",
+                  "path": ["api", "v2", "admin", "product"]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "bulk delete",
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{ACCESS_TOKEN}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"ids\": [\r\n    \"68a818e5b89bcc43d22c5a8a\",\r\n    \"68a85958ba46dc64a1584906\"\r\n  ]\r\n}\r\n",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "http://localhost:8080/api/v2/admin/product/bulk-delete",
+                  "protocol": "http",
+                  "host": ["localhost"],
+                  "port": "8080",
+                  "path": ["api", "v2", "admin", "product", "bulk-delete"]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "product",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{ACCESS_TOKEN}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"productName\": \"iPhone 15 Pro\",\r\n  \"store\": \"66d13bf25a6d6e1234567890\",\r\n  \"category\": \"66d13d285a6d6e1234567891\",\r\n  \"subCategory\": \"66d13d445a6d6e1234567892\",\r\n  \"unit\": \"66d13d725a6d6e1234567893\",\r\n  \"brand\": \"66d13d8e5a6d6e1234567894\",\r\n  \"description\": \"Latest Apple iPhone 15 Pro with A17 Bionic chip.\",\r\n  \"quantity\": 50,\r\n  \"price\": 1200,\r\n  \"tax\": \"66d13db85a6d6e1234567895\",\r\n  \"warrantyType\": \"66d13dd25a6d6e1234567896\",\r\n  \"warrantyDate\": \"2025-09-01\",\r\n  \"expiryDate\": \"2026-09-01\"\r\n}\r\n",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "http://localhost:8080/api/v2/admin/product",
+                  "protocol": "http",
+                  "host": ["localhost"],
+                  "port": "8080",
+                  "path": ["api", "v2", "admin", "product"]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "expired",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{ACCESS_TOKEN}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"productName\": \"iPhone 15 Pro\",\r\n  \"store\": \"66d13bf25a6d6e1234567890\",\r\n  \"category\": \"66d13d285a6d6e1234567891\",\r\n  \"subCategory\": \"66d13d445a6d6e1234567892\",\r\n  \"unit\": \"66d13d725a6d6e1234567893\",\r\n  \"brand\": \"66d13d8e5a6d6e1234567894\",\r\n  \"description\": \"Latest Apple iPhone 15 Pro with A17 Bionic chip.\",\r\n  \"quantity\": 50,\r\n  \"price\": 1200,\r\n  \"tax\": \"66d13db85a6d6e1234567895\",\r\n  \"warrantyType\": \"66d13dd25a6d6e1234567896\",\r\n  \"warrantyDate\": \"2025-09-01\",\r\n  \"expiryDate\": \"2026-09-01\"\r\n}\r\n"
+                },
+                "url": {
+                  "raw": "http://localhost:8080/api/v2/admin/product/expired",
+                  "protocol": "http",
+                  "host": ["localhost"],
+                  "port": "8080",
+                  "path": ["api", "v2", "admin", "product", "expired"]
+                }
+              },
+              "response": []
+            }
+          ]
+        },
+        {
+          "name": "employee",
+          "item": [
+            {
+              "name": "employee",
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{ACCESS_TOKEN}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"user\": \"689c30711a147bf03cdb211c\",\r\n  \"store\": \"66cf245b23def56e78902bcd\",\r\n  \"designation\": \"manager\",\r\n  \"joinDate\": \"2025-08-20\",\r\n  \"isActive\": true,\r\n  \"createdBy\": \"66cf234a12bcf45d78901abc\"\r\n}\r\n",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "http://localhost:8080/api/v2/admin/employee",
+                  "protocol": "http",
+                  "host": ["localhost"],
+                  "port": "8080",
+                  "path": ["api", "v2", "admin", "employee"]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "employee",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{ACCESS_TOKEN}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"user\": \"689c30711a147bf03cdb211c\",\r\n  \"store\": \"66cf245b23def56e78902bcd\",\r\n  \"designation\": \"manager\",\r\n  \"joinDate\": \"2025-08-20\",\r\n  \"isActive\": true,\r\n  \"createdBy\": \"66cf234a12bcf45d78901abc\"\r\n}\r\n"
+                },
+                "url": {
+                  "raw": "http://localhost:8080/api/v2/admin/employee/:id",
+                  "protocol": "http",
+                  "host": ["localhost"],
+                  "port": "8080",
+                  "path": ["api", "v2", "admin", "employee", ":id"],
+                  "variable": [
+                    {
+                      "key": "id",
+                      "value": ""
+                    }
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "employee",
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{ACCESS_TOKEN}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "PUT",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"user\": \"689c30711a147bf03cdb211c\",\r\n  \"store\": \"66cf245b23def56e78902bcd\",\r\n  \"designation\": \"manager\",\r\n  \"joinDate\": \"2025-08-20\",\r\n  \"isActive\": true,\r\n  \"createdBy\": \"66cf234a12bcf45d78901abc\"\r\n}\r\n"
+                },
+                "url": {
+                  "raw": "http://localhost:8080/api/v2/admin/employee/:id",
+                  "protocol": "http",
+                  "host": ["localhost"],
+                  "port": "8080",
+                  "path": ["api", "v2", "admin", "employee", ":id"],
+                  "variable": [
+                    {
+                      "key": "id",
+                      "value": ""
+                    }
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "employee",
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{ACCESS_TOKEN}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "DELETE",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"user\": \"689c30711a147bf03cdb211c\",\r\n  \"store\": \"66cf245b23def56e78902bcd\",\r\n  \"designation\": \"manager\",\r\n  \"joinDate\": \"2025-08-20\",\r\n  \"isActive\": true,\r\n  \"createdBy\": \"66cf234a12bcf45d78901abc\"\r\n}\r\n"
+                },
+                "url": {
+                  "raw": "http://localhost:8080/api/v2/admin/employee/:id",
+                  "protocol": "http",
+                  "host": ["localhost"],
+                  "port": "8080",
+                  "path": ["api", "v2", "admin", "employee", ":id"],
+                  "variable": [
+                    {
+                      "key": "id",
+                      "value": ""
+                    }
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "employee by store",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{ACCESS_TOKEN}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"user\": \"689c30711a147bf03cdb211c\",\r\n  \"store\": \"66cf245b23def56e78902bcd\",\r\n  \"designation\": \"manager\",\r\n  \"joinDate\": \"2025-08-20\",\r\n  \"isActive\": true,\r\n  \"createdBy\": \"66cf234a12bcf45d78901abc\"\r\n}\r\n"
+                },
+                "url": {
+                  "raw": "http://localhost:8080/api/v2/admin/employee/:id/store/:storeId",
+                  "protocol": "http",
+                  "host": ["localhost"],
+                  "port": "8080",
+                  "path": [
+                    "api",
+                    "v2",
+                    "admin",
+                    "employee",
+                    ":id",
+                    "store",
+                    ":storeId"
+                  ],
+                  "variable": [
+                    {
+                      "key": "id",
+                      "value": ""
+                    },
+                    {
+                      "key": "storeId",
+                      "value": ""
+                    }
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "employee by user id",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{ACCESS_TOKEN}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"user\": \"689c30711a147bf03cdb211c\",\r\n  \"store\": \"66cf245b23def56e78902bcd\",\r\n  \"designation\": \"manager\",\r\n  \"joinDate\": \"2025-08-20\",\r\n  \"isActive\": true,\r\n  \"createdBy\": \"66cf234a12bcf45d78901abc\"\r\n}\r\n"
+                },
+                "url": {
+                  "raw": "http://localhost:8080/api/v2/admin/employee/user/:userId",
+                  "protocol": "http",
+                  "host": ["localhost"],
+                  "port": "8080",
+                  "path": ["api", "v2", "admin", "employee", "user", ":userId"],
+                  "variable": [
+                    {
+                      "key": "userId",
+                      "value": ""
+                    }
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "employee management",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{ACCESS_TOKEN}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"user\": \"689c30711a147bf03cdb211c\",\r\n  \"store\": \"66cf245b23def56e78902bcd\",\r\n  \"designation\": \"manager\",\r\n  \"joinDate\": \"2025-08-20\",\r\n  \"isActive\": true,\r\n  \"createdBy\": \"66cf234a12bcf45d78901abc\"\r\n}\r\n"
+                },
+                "url": {
+                  "raw": "http://localhost:8080/api/v2/admin/employee/managers/store/:storeId",
+                  "protocol": "http",
+                  "host": ["localhost"],
+                  "port": "8080",
+                  "path": [
+                    "api",
+                    "v2",
+                    "admin",
+                    "employee",
+                    "managers",
+                    "store",
+                    ":storeId"
+                  ],
+                  "variable": [
+                    {
+                      "key": "storeId",
+                      "value": ""
+                    }
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "New Request",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{ACCESS_TOKEN}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"user\": \"689c30711a147bf03cdb211c\",\r\n  \"store\": \"66cf245b23def56e78902bcd\",\r\n  \"designation\": \"manager\",\r\n  \"joinDate\": \"2025-08-20\",\r\n  \"isActive\": true,\r\n  \"createdBy\": \"66cf234a12bcf45d78901abc\"\r\n}\r\n"
+                },
+                "url": {
+                  "raw": "http://localhost:8080/api/v2/admin/employee/check-manager/store/:storeId",
+                  "protocol": "http",
+                  "host": ["localhost"],
+                  "port": "8080",
+                  "path": [
+                    "api",
+                    "v2",
+                    "admin",
+                    "employee",
+                    "check-manager",
+                    "store",
+                    ":storeId"
+                  ],
+                  "variable": [
+                    {
+                      "key": "storeId",
+                      "value": ""
+                    }
+                  ]
+                }
+              },
+              "response": []
+            }
+          ]
+        },
+        {
+          "name": "product-category",
+          "item": [
+            {
+              "name": "product-category",
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{ACCESS_TOKEN}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"categoryName\": \"Electronics & Gadgets\",\r\n  \"description\": \"This category includes all types of electronics such as mobiles, laptops, and accessories.\",\r\n  \"slug\": \"electronics-gadgets\",\r\n  \"business\": \"66cf245b23def56e78902bcd\",\r\n  \"isActive\": true,\r\n  \"createdBy\": \"66cf234a12bcf45d78901abc\",\r\n  \"updatedBy\": \"66cf234a12bcf45d78901abc\"\r\n}\r\n",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "http://localhost:8080/api/v2/admin/product-category",
+                  "protocol": "http",
+                  "host": ["localhost"],
+                  "port": "8080",
+                  "path": ["api", "v2", "admin", "product-category"]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "product-category",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{ACCESS_TOKEN}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"categoryName\": \"Electronics & Gadgets\",\r\n  \"description\": \"This category includes all types of electronics such as mobiles, laptops, and accessories.\",\r\n  \"slug\": \"electronics-gadgets\",\r\n  \"business\": \"66cf245b23def56e78902bcd\",\r\n  \"isActive\": true,\r\n  \"createdBy\": \"66cf234a12bcf45d78901abc\",\r\n  \"updatedBy\": \"66cf234a12bcf45d78901abc\"\r\n}\r\n"
+                },
+                "url": {
+                  "raw": "http://localhost:8080/api/v2/admin/product-category",
+                  "protocol": "http",
+                  "host": ["localhost"],
+                  "port": "8080",
+                  "path": ["api", "v2", "admin", "product-category"]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "product-category by active",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{ACCESS_TOKEN}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"categoryName\": \"Electronics & Gadgets\",\r\n  \"description\": \"This category includes all types of electronics such as mobiles, laptops, and accessories.\",\r\n  \"slug\": \"electronics-gadgets\",\r\n  \"business\": \"66cf245b23def56e78902bcd\",\r\n  \"isActive\": true,\r\n  \"createdBy\": \"66cf234a12bcf45d78901abc\",\r\n  \"updatedBy\": \"66cf234a12bcf45d78901abc\"\r\n}\r\n"
+                },
+                "url": {
+                  "raw": "http://localhost:8080/api/v2/admin/product-category/active",
+                  "protocol": "http",
+                  "host": ["localhost"],
+                  "port": "8080",
+                  "path": ["api", "v2", "admin", "product-category", "active"]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "product-category by id",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{ACCESS_TOKEN}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"categoryName\": \"Electronics & Gadgets\",\r\n  \"description\": \"This category includes all types of electronics such as mobiles, laptops, and accessories.\",\r\n  \"slug\": \"electronics-gadgets\",\r\n  \"business\": \"66cf245b23def56e78902bcd\",\r\n  \"isActive\": true,\r\n  \"createdBy\": \"66cf234a12bcf45d78901abc\",\r\n  \"updatedBy\": \"66cf234a12bcf45d78901abc\"\r\n}\r\n"
+                },
+                "url": {
+                  "raw": "http://localhost:8080/api/v2/admin/product-category/:id",
+                  "protocol": "http",
+                  "host": ["localhost"],
+                  "port": "8080",
+                  "path": ["api", "v2", "admin", "product-category", ":id"],
+                  "variable": [
+                    {
+                      "key": "id",
+                      "value": ""
+                    }
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "product-category",
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{ACCESS_TOKEN}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "PUT",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"categoryName\": \"Electronics & Gadgets\",\r\n  \"description\": \"This category includes all types of electronics such as mobiles, laptops, and accessories.\",\r\n  \"slug\": \"electronics-gadgets\",\r\n  \"business\": \"66cf245b23def56e78902bcd\",\r\n  \"isActive\": true,\r\n  \"createdBy\": \"66cf234a12bcf45d78901abc\",\r\n  \"updatedBy\": \"66cf234a12bcf45d78901abc\"\r\n}\r\n"
+                },
+                "url": {
+                  "raw": "http://localhost:8080/api/v2/admin/product-category/:id",
+                  "protocol": "http",
+                  "host": ["localhost"],
+                  "port": "8080",
+                  "path": ["api", "v2", "admin", "product-category", ":id"],
+                  "variable": [
+                    {
+                      "key": "id",
+                      "value": ""
+                    }
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "product-category",
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{ACCESS_TOKEN}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "DELETE",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"categoryName\": \"Electronics & Gadgets\",\r\n  \"description\": \"This category includes all types of electronics such as mobiles, laptops, and accessories.\",\r\n  \"slug\": \"electronics-gadgets\",\r\n  \"business\": \"66cf245b23def56e78902bcd\",\r\n  \"isActive\": true,\r\n  \"createdBy\": \"66cf234a12bcf45d78901abc\",\r\n  \"updatedBy\": \"66cf234a12bcf45d78901abc\"\r\n}\r\n"
+                },
+                "url": {
+                  "raw": "http://localhost:8080/api/v2/admin/product-category/:id",
+                  "protocol": "http",
+                  "host": ["localhost"],
+                  "port": "8080",
+                  "path": ["api", "v2", "admin", "product-category", ":id"],
+                  "variable": [
+                    {
+                      "key": "id",
+                      "value": ""
+                    }
+                  ]
+                }
+              },
+              "response": []
+            }
+          ]
+        },
+        {
+          "name": "subcategory",
+          "item": [
+            {
+              "name": "subcategory",
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{ACCESS_TOKEN}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"category\": \"68a98a3b36345929e73c682c\",\r\n  \"subcategory\": \"Mobile Phones\",\r\n  \"categorycode\": \"ELEC-MOB\",\r\n  \"description\": \"All types of smartphones including Android and iPhones\",\r\n  \"image\": \"https://dummyimage.com/300x200/000/fff.png&text=Mobile\",\r\n  \"status\": true\r\n}\r\n",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "http://localhost:8080/api/v2/admin/subcategory",
+                  "protocol": "http",
+                  "host": ["localhost"],
+                  "port": "8080",
+                  "path": ["api", "v2", "admin", "subcategory"]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "subcategory",
+              "request": {
+                "method": "GET",
+                "header": []
+              },
+              "response": []
+            },
+            {
+              "name": "subcategory/active",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{ACCESS_TOKEN}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"category\": \"68a98a3b36345929e73c682c\",\r\n  \"subcategory\": \"Mobile Phones\",\r\n  \"categorycode\": \"ELEC-MOB\",\r\n  \"description\": \"All types of smartphones including Android and iPhones\",\r\n  \"image\": \"https://dummyimage.com/300x200/000/fff.png&text=Mobile\",\r\n  \"status\": true\r\n}\r\n"
+                },
+                "url": {
+                  "raw": "http://localhost:8080/api/v2/admin/subcategory/active",
+                  "protocol": "http",
+                  "host": ["localhost"],
+                  "port": "8080",
+                  "path": ["api", "v2", "admin", "subcategory", "active"]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "subcategory/Id",
+              "request": {
+                "method": "GET",
+                "header": []
+              },
+              "response": []
+            },
+            {
+              "name": "subcategory",
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{ACCESS_TOKEN}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "PUT",
+                "header": [],
+                "url": {
+                  "raw": "http://localhost:8080/api/v2/admin/subcategory/68a9905f36345929e73c6842",
+                  "protocol": "http",
+                  "host": ["localhost"],
+                  "port": "8080",
+                  "path": [
+                    "api",
+                    "v2",
+                    "admin",
+                    "subcategory",
+                    "68a9905f36345929e73c6842"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "subcategory",
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{ACCESS_TOKEN}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "DELETE",
+                "header": [],
+                "url": {
+                  "raw": "http://localhost:8080/api/v2/admin/subcategory/68a9905f36345929e73c6842",
+                  "protocol": "http",
+                  "host": ["localhost"],
+                  "port": "8080",
+                  "path": [
+                    "api",
+                    "v2",
+                    "admin",
+                    "subcategory",
+                    "68a9905f36345929e73c6842"
+                  ]
+                }
+              },
+              "response": []
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "event": [
+    {
+      "listen": "prerequest",
+      "script": {
+        "type": "text/javascript",
+        "packages": {},
+        "exec": [""]
+      }
+    },
+    {
+      "listen": "test",
+      "script": {
+        "type": "text/javascript",
+        "packages": {},
+        "exec": [""]
+      }
+    }
+  ],
+  "variable": [
+    {
+      "key": "Base_Url",
+      "value": "http://localhost:8080/api/v2/",
+      "type": "string"
+    },
+    {
+      "key": "ACCESS_TOKEN",
+      "value": "",
+      "type": "string"
+    }
+  ]
+}

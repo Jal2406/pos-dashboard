@@ -1,0 +1,53 @@
+# --- Node Modules & Dependency Caches ---
+node_modules/
+npm-debug.log
+yarn-debug.log
+yarn-error.log
+pnpm-lock.yaml
+package-lock.json
+
+# --- Git & Local Files ---
+.git/
+.gitignore
+*.md
+*.log
+logs/
+tmp/
+cache/
+
+# --- Environment & Secrets ---
+.env
+.env.*
+*.pem
+*.key
+
+# --- OS / Editor Files ---
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+.idea/
+.vscode/
+
+# --- Build & Dist Output (Server builds only) ---
+dist/
+build/
+.next/
+out/
+
+# --- Test & Coverage ---
+coverage/
+test/
+tests/
+__tests__/
+
+# --- Docker ---
+Dockerfile
+docker-compose.yml
+.dockerignore
+
+# --- EB Specific Excludes ---
+.elasticbeanstalk/*
+!.elasticbeanstalk/config.yml
+!.elasticbeanstalk/*.global.yml
+!.elasticbeanstalk/*.local.yml
