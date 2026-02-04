@@ -2,7 +2,7 @@ import { Client } from '@elastic/elasticsearch';
 import fs from 'fs/promises';
 import path from 'path';
 import crypto from 'crypto';
-import PDFParser from 'pdf-parse';
+import pdfParse from 'pdf-parse/lib/pdf-parse.js';
 import mammoth from 'mammoth';
 import { GoogleGenerativeAI } from '@google/generative-ai';
 import { RagConfig } from '../config/rag-config.fallback.js';
@@ -161,7 +161,7 @@ class RagService {
       if (mimeType === 'application/pdf' || path.extname(filePath) === '.pdf') {
         try {
           // Use pdf-parse for server-side PDF parsing
-          const pdfData = await PDFParser(fileBuffer);
+          const pdfData = await pdfParse(fileBuffer);
           
           let fullText = '';
           
