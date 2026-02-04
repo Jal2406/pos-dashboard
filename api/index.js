@@ -10,6 +10,8 @@ import { resolveTenantFromSubdomain } from '../src/middleware/subdomainTenantRes
 
 const schedulerEnabled = process.env.NOTIFICATION_SCHEDULER_DISABLED !== 'true';
 let isInitialized = false;
+console.log('Node version:', process.version);
+
 
 /**
  * Initialize the Express app for Vercel serverless environment
