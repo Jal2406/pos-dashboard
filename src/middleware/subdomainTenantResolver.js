@@ -10,7 +10,8 @@ const RESERVED_SUBDOMAINS = new Set([
   'auth',
   'static',
   'pos-dashboard-2lt5',
-  'pos-dashboard-1'
+  'pos-dashboard-1',
+  'pos-dashboard-pi'
 ]);
 
 // simple in-memory cache (replaceable with Redis later)
