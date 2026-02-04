@@ -12,7 +12,7 @@ import { StatusCodes } from 'http-status-codes';
 import cookieParser from 'cookie-parser';
 
 // Use cookie parser middleware
-router.use(cookieParser());
+router.use(cookieParser(process.env.COOKIE_SECRET || 'secret-key'));
 
 // Public routes
 router.post(
